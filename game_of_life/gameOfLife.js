@@ -1,16 +1,16 @@
-const readline = require('readline');
+const readline = require('readline')
 
 const width = 30;
 const height = 15;
 const interval = 200;
 
 const initializeGrid = () => {
-  const grid = [];
+  const grid = []
   for (let i = 0; i < height; i++) {
-    grid[i] = Array.from({ length: width }, () => Math.random() > 0.7 ? 1 : 0);
+    grid[i] = Array.from({ length: width }, () => Math.random() > 0.7 ? 1 : 0)
   }
 
-  return grid;
+  return grid
 }
 
 const printGrid = (grid) => {
@@ -18,13 +18,13 @@ const printGrid = (grid) => {
   for (let row of grid) {
     console.log(row.map(cell => (cell === 1 ? '■' : ' ')).join(' '));
   }
-};
+}
 
 const updateGrid = (grid) => {
-  const newGrid = [];
+  const newGrid = []
 
   for (let i = 0; i < height; i++) {
-    newGrid[i] = [];
+    newGrid[i] = []
     for (let j = 0; j < width; j++) {
       const neighbors = countNeighbors(grid, i, j);
       if (grid[i][j] === 1) {
@@ -36,10 +36,11 @@ const updateGrid = (grid) => {
   }
 
   return newGrid;
-};
+}
+
 
 const countNeighbors = (grid, x, y) => {
-  let count = 0;
+  let count = 0
   for (let i = -1; i <= 1; i++) {
     for (let j = -1; j <= 1; j++) {
       const neighborX = x + i;
@@ -49,9 +50,12 @@ const countNeighbors = (grid, x, y) => {
       }
     }
   }
+
   count -= grid[x][y];
-  return count;
+
+  return count
 }
+
 
 const runGame = () => {
   let grid = initializeGrid();
@@ -70,8 +74,9 @@ const runGame = () => {
   iterate();
 
   rl.on('close', () => {
-    process.exit(0);
-  });
-};
+    process.exit(0)
+  })
+}
 
 runGame();
+
